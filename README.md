@@ -4,10 +4,11 @@
 
 - 4 GiB RAM
 - 2 vCPU's
+- 20 GB storage
 - [Ubuntu 24.04 LTS](https://ubuntu.com/download/server)
 
 Makes sure to install the openssh server during the ubuntu installation.
-It's also important to enable **Virtualize Intel VT-x/EPT or AMD-V/RVI in VMware workstation pro** or enable **Nested VT-x/AMD-V in VirtualBox** on the VM.
+It's also important to enable **Virtualize Intel VT-x/EPT or AMD-V/RVI in VMware workstation pro** or enable **Nested VT-x/AMD-V in VirtualBox** on the VM. This option can typically be found under the proccessor settings of the VM.
 
 ## Installing containerlab
 
