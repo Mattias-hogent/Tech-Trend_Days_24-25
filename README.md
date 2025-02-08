@@ -1,10 +1,15 @@
-# Virtual machine requirements
+# Setup Guide
+
+## Virtual machine requirements
+
 - 4 GiB RAM
 - 2 vCPU's
 - Ubuntu 24.04 LTS
 Makes sure to install the openssh server during the ubuntu installation.
 It's also important to enable **Virtualize Intel VT-x/EPT or AMD-V/RVI in VMware workstation pro** or enable **Nested VT-x/AMD-V in VirtualBox** on the VM.
-# Installing containerlab
+
+## Installing containerlab
+
 ```bash
 # Makes sure the system is up to date.
 sudo apt update -y && sudo apt full-upgrade -y
@@ -12,7 +17,8 @@ sudo apt update -y && sudo apt full-upgrade -y
 curl -sL https://containerlab.dev/setup | sudo -E bash -s "all"
 ```
 
-# Building the Mikrotik Routeros v7 docker image
+## Building the Mikrotik Routeros v7 docker image
+
 ```bash
 # Clones the vrnetlab repo. This builds the routeros image.
 git clone https://github.com/hellt/vrnetlab
@@ -29,21 +35,27 @@ cd ./vrnetlab/routeros
 # Builds the Mikrotik routers v7.17.2 Cloud Hosted Router docker image.
 sudo make docker-image
 ```
+
 We can check if the image has been build correctly with `sudo docker image ls` the output should be similar to this.
-```
+
+```txt
 REPOSITORY                   TAG       IMAGE ID       CREATED          SIZE
 vrnetlab/mikrotik_routeros   7.17.2    b22a0571bf79   37 minutes ago   973MB
 ```
 
-# Setting up a bridge interface for container lab to use
+## Setting up a bridge interface for container lab to use
+
 We have to edit the `/etc/netplan/50-cloud-init.yaml` file to add a bridge. You have to add the following code to the end of the file.
+
 ```yaml
 bridges:
     ixp-net:
         interfaces: []
         optional: true
 ```
+
 The resulting file should look similar to this.
+
 ```yaml
 network:
     ethernets:
@@ -58,4 +70,5 @@ network:
             interfaces: []
             optional: true
 ```
-you can check the file with `sudo netplan try` to makes sure the file is valid and you can apply changes with `sudo netplan apply`. 
+
+you can check the file with `sudo netplan try` to makes sure the file is valid and you can apply changes with `sudo netplan apply`.
