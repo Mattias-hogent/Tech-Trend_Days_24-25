@@ -5,6 +5,7 @@
 - 4 GiB RAM
 - 2 vCPU's
 - Ubuntu 24.04 LTS
+
 Makes sure to install the openssh server during the ubuntu installation.
 It's also important to enable **Virtualize Intel VT-x/EPT or AMD-V/RVI in VMware workstation pro** or enable **Nested VT-x/AMD-V in VirtualBox** on the VM.
 
