@@ -1,5 +1,8 @@
 # Setup Guide
 
+## Important
+During testing we weren't able to get the lab fully working on VirtualBox so we recommend using VMware workstation (pro). If the account creation is acting up you can still download the executable on the update repository <https://softwareupdate.broadcom.com/cds/vmw-desktop/ws/17.6.2/24409262/windows/core/>. You can extract the tar file with [7-Zip](https://www.7-zip.org/).
+
 ## Virtual machine requirements
 
 - 4 GiB RAM
@@ -56,7 +59,7 @@ bridges:
         optional: true
 ```
 
-The resulting file should look similar to this.
+The resulting file should look similar to this. The entries under **ethernets** depends on how many interfaces your vm has so this can vary depending on your setup.
 
 ```yaml
 network:
@@ -73,4 +76,9 @@ network:
             optional: true
 ```
 
-you can check the file with `sudo netplan try` to makes sure the file is valid and you can apply changes with `sudo netplan apply`.
+You can check the file with `sudo netplan try` to makes sure the file is valid and you can apply changes with `sudo netplan apply`. After apply the netplan you can check if the bridge interface has been create with `ip -c a` the output should contain something similar to this.
+
+```txt
+7: ixp-net: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+    link/ether aa:7c:79:c5:15:9e brd ff:ff:ff:ff:ff:ff
+```
